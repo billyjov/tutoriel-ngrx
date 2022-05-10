@@ -1,19 +1,24 @@
 import { ActionReducer, createReducer, MetaReducer, on } from '@ngrx/store';
 
-import { initAction } from './01-actions';
+import { changeUsername, initAction } from './01-actions';
 
 const initialState = {
-  appName: 'NgRx'
+  appName: 'NgRx',
+  user: {
+    username: '',
+    isAdmin: false
+  }
 };
 
 function log(reducer: ActionReducer<any>): ActionReducer<any> {
   return (state, action) => {
     const currentState = reducer(state, action);
 
-
+    console.groupCollapsed(action.type)
     console.log('Etat precedent: ', state);
     console.log('Action: ', action);
     console.log('Etat suivant: ', currentState);
+    console.groupEnd()
 
     return currentState;
   }
@@ -27,7 +32,20 @@ export const rootReducer = createReducer(initialState,
 
     return {
       ...state,
-      isAdmin: true
+      user: {
+        ...state.user,
+        isAdmin: true
+      }
     }
+  }),
+  on(changeUsername, (state, props) => {
+
+    return {
+      ...state,
+      user: {
+        ...state.user,
+        username: props.username
+      }
+    };
   })
 );
