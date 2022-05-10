@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { initAction, changeUsername } from './state/01-actions';
@@ -19,7 +19,8 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(initAction());
 
-    this.user = this.store.select((state: any) => state.root.user);
+    // this.user = this.store.select((state: any) => state.root.user);
+    this.user = this.store.pipe(select((state: any) => state['root']['user']));
   }
 
   public changeUsername(): void {
