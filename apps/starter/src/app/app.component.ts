@@ -5,6 +5,7 @@ import { User } from './models/user';
 
 import { State } from './state/00-reducer';
 import { initAction, changeUsername } from './state/01-actions';
+import { getUser } from './state/02-selectors';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,8 @@ export class AppComponent implements OnInit {
     this.store.dispatch(initAction());
 
     // this.user = this.store.select((state: any) => state.root.user);
-    this.user = this.store.pipe(select((state: State) => state.root.user));
+    // this.user = this.store.pipe(select((state: State) => state.root.user));
+    this.user = this.store.pipe(select(getUser));
   }
 
   public changeUsername(): void {
