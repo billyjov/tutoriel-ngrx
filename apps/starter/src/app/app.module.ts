@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 
 import { metaReducers, rootReducer, ROOT_FEATURE_KEY } from './state/00-reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,11 @@ import { metaReducers, rootReducer, ROOT_FEATURE_KEY } from './state/00-reducer'
       [ROOT_FEATURE_KEY]: rootReducer
     }, {
       metaReducers
+    }),
+    StoreDevtoolsModule.instrument({
+      name: 'Ngrx Starter Kit Coulisses Learn',
+      maxAge: 25,
+      logOnly: environment.production,
     })
   ],
   providers: [],
