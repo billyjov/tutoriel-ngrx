@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { User } from './models/user';
 
 import { State } from './state/00-reducer';
-import { initAction, changeUsername } from './state/01-actions';
+import { initAction, changeUsername, changeIsAdmin } from './state/01-actions';
 import { getUser } from './state/02-selectors';
 
 @Component({
@@ -29,5 +29,6 @@ export class AppComponent implements OnInit {
 
   public changeUsername(): void {
     this.store.dispatch(changeUsername({ username: `Coulisses ${Math.random()}` }));
+    this.store.dispatch(changeIsAdmin({ isAdmin: false }));
   }
 }

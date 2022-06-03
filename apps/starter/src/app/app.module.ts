@@ -17,7 +17,10 @@ import { environment } from '../environments/environment';
     StoreModule.forRoot({
       [ROOT_FEATURE_KEY]: rootReducer
     }, {
-      metaReducers
+      metaReducers,
+      runtimeChecks: {
+        strictActionTypeUniqueness: true
+      }
     }),
     StoreDevtoolsModule.instrument({
       name: 'Ngrx Starter Kit Coulisses Learn',
