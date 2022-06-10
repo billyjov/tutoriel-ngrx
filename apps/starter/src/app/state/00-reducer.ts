@@ -41,7 +41,6 @@ export const metaReducers: MetaReducer[] = [log];
 export const rootReducer = createReducer<RootState, Action>(initialState,
 
   on(initAction, (state: RootState) => {
-
     return {
       ...state,
       user: {
@@ -51,7 +50,6 @@ export const rootReducer = createReducer<RootState, Action>(initialState,
     }
   }),
   on(changeUsername, (state: RootState, props) => {
-
     return {
       ...state,
       user: {

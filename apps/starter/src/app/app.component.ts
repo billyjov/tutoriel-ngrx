@@ -29,6 +29,6 @@ export class AppComponent implements OnInit {
 
   public changeUsername(): void {
     this.store.dispatch(changeUsername({ username: `Coulisses ${Math.random()}` }));
-    this.store.dispatch(changeIsAdmin({ isAdmin: false }));
+    // this.store.dispatch(changeIsAdmin({ isAdmin: false }));
   }
 }
