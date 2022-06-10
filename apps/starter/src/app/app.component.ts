@@ -4,7 +4,11 @@ import { Observable } from 'rxjs';
 import { User } from './models/user';
 
 import { State } from './state/00-reducer';
-import { initAction, changeUsername, changeIsAdmin } from './state/01-actions';
+// import { initAction, changeUsername, changeIsAdmin } from './state/01-actions';
+
+import { RootActions } from './state/01-actions';
+// import * as RootActions from './state/01-actions';
+
 import { getUser } from './state/02-selectors';
 
 @Component({
@@ -20,7 +24,8 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.store.dispatch(initAction());
+    // this.store.dispatch(RootActions.initAction());
+    this.store.dispatch(RootActions.initApp());
 
     // this.user = this.store.select((state: any) => state.root.user);
     // this.user = this.store.pipe(select((state: State) => state.root.user));
@@ -28,7 +33,9 @@ export class AppComponent implements OnInit {
   }
 
   public changeUsername(): void {
-    this.store.dispatch(changeUsername({ username: `Coulisses ${Math.random()}` }));
-    // this.store.dispatch(changeIsAdmin({ isAdmin: false }));
+    this.store.dispatch(RootActions.changeUsername({ username: `Coulisses ${Math.random()}` }));
+    this.store.dispatch(RootActions.changeIsAdmin({ isAdmin: false }));
+    // this.store.dispatch(RootActions.changeUsername({ username: `Coulisses ${Math.random()}` }));
+    // this.store.dispatch(RootActions.changeIsAdmin({ isAdmin: false }));
   }
 }
