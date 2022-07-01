@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -20,7 +21,7 @@ export class AppComponent implements OnInit {
   title = 'starter';
   public user: Observable<User> = {} as Observable<User>;
 
-  constructor(private store: Store<State>) { }
+  constructor(private store: Store<State>, private http: HttpClient) { }
 
 
   ngOnInit(): void {
@@ -30,6 +31,7 @@ export class AppComponent implements OnInit {
     // this.user = this.store.select((state: any) => state.root.user);
     // this.user = this.store.pipe(select((state: State) => state.root.user));
     this.user = this.store.pipe(select(getUser));
+    this.http.get('api/users').subscribe(val => console.log(val));
   }
 
   public changeUsername(): void {
