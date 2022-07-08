@@ -8,3 +8,4 @@ const selectRoot = createFeatureSelector<RootState>(ROOT_FEATURE_KEY);
 export const getUser = createSelector(selectRoot, (state: RootState) => state.user);
 
 export const getUsers = createSelector(selectRoot, (state: RootState) => state.users);
+export const getIsLoaded = createSelector(selectRoot, (state: RootState) => state.loaded);

@@ -10,7 +10,7 @@ import { State } from './state/00-reducer';
 import { loadUsers, RootActions } from './state/01-actions';
 // import * as RootActions from './state/01-actions';
 
-import { getUser, getUsers } from './state/02-selectors';
+import { getIsLoaded, getUser, getUsers } from './state/02-selectors';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
   title = 'starter';
   public user: Observable<User> = {} as Observable<User>;
   public users$!: Observable<User[]>;
+  public isLoaded$: Observable<boolean>;
 
   constructor(private store: Store<State>, private http: HttpClient) { }
 
@@ -33,6 +34,7 @@ export class AppComponent implements OnInit {
     // this.user = this.store.pipe(select((state: State) => state.root.user));
     this.user = this.store.pipe(select(getUser));
     this.users$ = this.store.pipe(select(getUsers));
+    this.isLoaded$ = this.store.pipe(select(getIsLoaded));
   }
 
   public changeUsername(): void {

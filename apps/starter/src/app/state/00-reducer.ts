@@ -14,6 +14,7 @@ export interface RootState {
   appName: string;
   user: User;
   users: User[];
+  loaded?: boolean;
 }
 
 const initialState: RootState = {
@@ -22,7 +23,7 @@ const initialState: RootState = {
     isAdmin: false,
     username: ''
   },
-  users: []
+  users: [],
 };
 
 function log(reducer: ActionReducer<State>): ActionReducer<State> {
@@ -63,13 +64,15 @@ export const rootReducer = createReducer<RootState, Action>(initialState,
   }),
   on(loadUsers, (state: RootState) => {
     return {
-      ...state
+      ...state,
+      loaded: false
     }
   }),
   on(loadUsersSuccess, (state: RootState, props) => {
     return {
       ...state,
-      users: props.users
+      users: props.users,
+      loaded: true
     }
   })
 );

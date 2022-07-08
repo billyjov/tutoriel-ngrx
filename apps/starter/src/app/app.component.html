@@ -9,24 +9,34 @@
   <h4>IsAdmin: {{ (user | async)?.isAdmin }}</h4>
 
   <button class="btn btn-success" (click)="loadUsers()">Load users</button>
+  <br>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Id</th>
-        <th scope="col">Username</th>
-        <th scope="col">isAdmin</th>
-      </tr>
-    </thead>
-    <tbody>
-      <ng-container *ngFor="let user of (users$ | async)">
+  <ng-container *ngIf="(isLoaded$ | async ) === false">
+    <div class="spinner-border mt-5" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="(isLoaded$ | async ) === true">
+
+    <table class="table">
+      <thead>
         <tr>
-          <th scope="row">{{ user.id }}</th>
-          <td>{{ user.username }}</td>
-          <td>{{ user.isAdmin }}</td>
+          <th scope="col">Id</th>
+          <th scope="col">Username</th>
+          <th scope="col">isAdmin</th>
         </tr>
-      </ng-container>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let user of (users$ | async)">
+          <tr>
+            <th scope="row">{{ user.id }}</th>
+            <td>{{ user.username }}</td>
+            <td>{{ user.isAdmin }}</td>
+          </tr>
+        </ng-container>
 
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  </ng-container>
 </div>
