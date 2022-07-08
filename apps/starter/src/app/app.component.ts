@@ -10,7 +10,7 @@ import { State } from './state/00-reducer';
 import { loadUsers, RootActions } from './state/01-actions';
 // import * as RootActions from './state/01-actions';
 
-import { getUser } from './state/02-selectors';
+import { getUser, getUsers } from './state/02-selectors';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +20,7 @@ import { getUser } from './state/02-selectors';
 export class AppComponent implements OnInit {
   title = 'starter';
   public user: Observable<User> = {} as Observable<User>;
+  public users$!: Observable<User[]>;
 
   constructor(private store: Store<State>, private http: HttpClient) { }
 
@@ -31,7 +32,7 @@ export class AppComponent implements OnInit {
     // this.user = this.store.select((state: any) => state.root.user);
     // this.user = this.store.pipe(select((state: State) => state.root.user));
     this.user = this.store.pipe(select(getUser));
-    this.http.get('api/users').subscribe(val => console.log(val));
+    this.users$ = this.store.pipe(select(getUsers));
   }
 
   public changeUsername(): void {

@@ -10,4 +10,23 @@
 
   <button class="btn btn-success" (click)="loadUsers()">Load users</button>
 
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Username</th>
+        <th scope="col">isAdmin</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let user of (users$ | async)">
+        <tr>
+          <th scope="row">{{ user.id }}</th>
+          <td>{{ user.username }}</td>
+          <td>{{ user.isAdmin }}</td>
+        </tr>
+      </ng-container>
+
+    </tbody>
+  </table>
 </div>

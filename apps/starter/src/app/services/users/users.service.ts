@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, delay } from 'rxjs';
 import { User } from 'src/app/models/user';
 
 @Injectable({
@@ -15,6 +15,8 @@ export class UsersService {
   ) { }
 
   public getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.USER_API_URL);
+    return this.http.get<User[]>(this.USER_API_URL).pipe(
+      delay(3000)
+    );
   }
 }
