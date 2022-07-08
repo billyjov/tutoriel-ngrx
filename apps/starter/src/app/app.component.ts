@@ -7,7 +7,7 @@ import { User } from './models/user';
 import { State } from './state/00-reducer';
 // import { initAction, changeUsername, changeIsAdmin } from './state/01-actions';
 
-import { RootActions } from './state/01-actions';
+import { loadUsers, RootActions } from './state/01-actions';
 // import * as RootActions from './state/01-actions';
 
 import { getUser } from './state/02-selectors';
@@ -39,5 +39,9 @@ export class AppComponent implements OnInit {
     this.store.dispatch(RootActions.changeIsAdmin({ isAdmin: false }));
     // this.store.dispatch(RootActions.changeUsername({ username: `Coulisses ${Math.random()}` }));
     // this.store.dispatch(RootActions.changeIsAdmin({ isAdmin: false }));
+  }
+
+  public loadUsers(): void {
+    this.store.dispatch(loadUsers());
   }
 }
