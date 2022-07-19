@@ -17,7 +17,13 @@
     </div>
   </ng-container>
 
-  <ng-container *ngIf="(isLoaded$ | async ) === true">
+  <ng-container *ngIf="errorMsg$ | async">
+    <div class="alert alert-danger">
+      {{ errorMsg$ | async }}
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="(isLoaded$ | async ) === true && (users$ | async)?.length">
 
     <table class="table">
       <thead>
