@@ -8,7 +8,7 @@ import { User } from 'src/app/models/user';
 })
 export class UsersService {
 
-  private USER_API_URL = 'api/userss';
+  private USER_API_URL = 'api/users';
 
   constructor(
     private http: HttpClient

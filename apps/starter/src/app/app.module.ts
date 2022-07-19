@@ -12,6 +12,7 @@ import { metaReducers, rootReducer, ROOT_FEATURE_KEY } from './state/00-reducer'
 import { environment } from '../environments/environment';
 import { AppEffects } from './state/04-effects';
 import { UsersData } from './api/users.data';
+import { BooksModule } from './books/books.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { UsersData } from './api/users.data';
   imports: [
     BrowserModule,
     HttpClientModule,
+    BooksModule,
     StoreModule.forRoot({
       [ROOT_FEATURE_KEY]: rootReducer
     }, {
