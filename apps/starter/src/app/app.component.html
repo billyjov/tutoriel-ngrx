@@ -1,7 +1,9 @@
-<div class="container">
-  <h1>Starter ngrx</h1>
+<div class="container mt-5">
 
-  <button class="btn btn-primary" (click)="changeUsername()">
+  <button class="btn btn-outline-primary" routerLink="/books">
+    Books ❤
+  </button>
+  <button class="btn btn-primary ms-3" (click)="changeUsername()">
     Change username
   </button>
 
@@ -23,7 +25,8 @@
     </div>
   </ng-container>
 
-  <ng-container *ngIf="(isLoaded$ | async ) === true && (users$ | async)?.length">
+  <ng-container
+    *ngIf="(isLoaded$ | async ) === true && (users$ | async)?.length">
 
     <table class="table">
       <thead>
@@ -45,4 +48,8 @@
       </tbody>
     </table>
   </ng-container>
+</div>
+
+<div class="container mt-5">
+  <router-outlet></router-outlet>
 </div>

@@ -13,6 +13,7 @@ import { environment } from '../environments/environment';
 import { AppEffects } from './state/04-effects';
 import { UsersData } from './api/users.data';
 import { BooksModule } from './books/books.module';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,6 @@ import { BooksModule } from './books/books.module';
   imports: [
     BrowserModule,
     HttpClientModule,
-    BooksModule,
     StoreModule.forRoot({
       [ROOT_FEATURE_KEY]: rootReducer
     }, {
@@ -38,7 +38,8 @@ import { BooksModule } from './books/books.module';
       logOnly: environment.production,
     }),
     EffectsModule.forRoot([AppEffects]),
-    InMemoryWebApiModule.forRoot(UsersData)
+    InMemoryWebApiModule.forRoot(UsersData),
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
