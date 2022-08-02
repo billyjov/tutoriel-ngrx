@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 import { metaReducers, rootReducer, ROOT_FEATURE_KEY } from './state/00-reducer';
 import { environment } from '../environments/environment';
 import { AppEffects } from './state/04-effects';
-import { UsersData } from './api/users.data';
+import { Data } from './api/data';
 import { BooksModule } from './books/books.module';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -38,7 +38,7 @@ import { AppRoutingModule } from './app-routing.module';
       logOnly: environment.production,
     }),
     EffectsModule.forRoot([AppEffects]),
-    InMemoryWebApiModule.forRoot(UsersData),
+    InMemoryWebApiModule.forRoot(Data),
     AppRoutingModule
   ],
   providers: [],
