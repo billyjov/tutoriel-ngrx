@@ -1,0 +1,17 @@
+<form [formGroup]="booksForm" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input type="text" class="form-control" id="name" formControlName="name">
+  </div>
+  <div class="mb-3">
+    <label for="publisher" class="form-label">publisher</label>
+    <input type="text" class="form-control" id="publisher"
+      formControlName="publisher">
+  </div>
+  <div class="mb-3">
+    <label for="author" class="form-label">author</label>
+    <input type="text" class="form-control" id="author"
+      formControlName="author">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
