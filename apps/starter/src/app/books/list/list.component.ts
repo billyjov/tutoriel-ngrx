@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { Book } from 'src/app/models/books';
+import { getBooks } from '../state/selectors/book/book.selectors';
 
 @Component({
   selector: 'app-list',
@@ -7,9 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  public books$: Observable<Book[]>;
+
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
+    this.books$ = this.store.select(getBooks);
   }
 
 }

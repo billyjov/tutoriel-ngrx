@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
+import { Store } from '@ngrx/store';
+import { addBook } from '../state/actions/books/books.actions';
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -11,7 +14,7 @@ export class FormComponent implements OnInit {
 
   public booksForm: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private store: Store) { }
 
   ngOnInit(): void {
     this.booksForm = this.fb.group({
@@ -24,6 +27,9 @@ export class FormComponent implements OnInit {
 
   public onSubmit(): void {
     console.log('form: ', this.booksForm.value);
+
+    this.store.dispatch(addBook({ book: this.booksForm.value }))
+
   }
 
 }

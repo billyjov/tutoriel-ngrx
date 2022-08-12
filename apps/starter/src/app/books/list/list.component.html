@@ -1,1 +1,20 @@
-<p>list works!</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Author</th>
+      <th scope="col">Publisher</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let book of (books$ | async)">
+      <tr>
+        <th scope="row">{{ book?.id }}</th>
+        <td>{{ book?.name }}</td>
+        <td>{{ book?.author }}</td>
+        <td>{{ book?.publisher }}</td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>
