@@ -1,21 +1,27 @@
 import { Action, createReducer, on } from '@ngrx/store';
+import { Book } from 'src/app/models/books';
 
 import * as BooksActions from '../../actions/books/books.actions';
 
-export const bookFeatureKey = 'book';
+export const booksFeatureKey = 'books';
 
-export interface State {
-
+export interface BooksState {
+  books: Book[];
+  selectedBook: Book | null;
 }
 
-export const initialState: State = {
+export interface State {
+  readonly [booksFeatureKey]: BooksState
+}
 
+export const initialState: BooksState = {
+  books: [],
+  selectedBook: null
 };
 
 export const reducer = createReducer(
   initialState,
   on(BooksActions.loadBooksSuccess, (state, { books }) => {
-    console.log('test');
     return {
       ...state,
       books
