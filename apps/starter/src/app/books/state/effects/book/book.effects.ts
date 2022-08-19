@@ -33,6 +33,16 @@ export class BookEffects {
     )
   );
 
+  deleteBook$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(BooksActions.BooksActionsGroup.deleteBook),
+      mergeMap(({ id }) => this.booksService.deleteBook(id).pipe(
+        map(() => BooksActions.BooksActionsGroup.deleteBookSuccess({ id })),
+        catchError(error => of(BooksActions.BooksActionsGroup.deleteBookFailure({ error: error })))
+      ))
+    )
+  );
+
 
   constructor(private actions$: Actions, private booksService: BooksService) { }
 

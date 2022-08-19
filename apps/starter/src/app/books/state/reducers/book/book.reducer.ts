@@ -37,6 +37,12 @@ export const reducer = createReducer(
       ...state,
       books: [...state.books, book]
     }
+  }),
+  on(BooksActions.BooksActionsGroup.deleteBookSuccess, (state, { id }) => {
+    return {
+      ...state,
+      books: state.books.filter((book: Book) => book.id !== id)
+    }
   })
 
 );
