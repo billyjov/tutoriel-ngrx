@@ -26,6 +26,17 @@ export const reducer = createReducer(
       ...state,
       books
     }
+  }),
+  on(BooksActions.addBook, (state) => {
+    return {
+      ...state
+    }
+  }),
+  on(BooksActions.addBookSuccess, (state, { book }) => {
+    return {
+      ...state,
+      books: [...state.books, book]
+    }
   })
 
 );
