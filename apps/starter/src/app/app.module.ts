@@ -12,7 +12,6 @@ import { metaReducers, rootReducer, ROOT_FEATURE_KEY } from './state/00-reducer'
 import { environment } from '../environments/environment';
 import { AppEffects } from './state/04-effects';
 import { Data } from './api/data';
-import { BooksModule } from './books/books.module';
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({

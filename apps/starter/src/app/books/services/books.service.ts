@@ -19,6 +19,7 @@ export class BooksService {
   }
 
   public addBook(book: Book): Observable<Book> {
-    return this.http.post<Book>(this.BOOKS_API_URL, book);
+    const body: Book = { ...book, id: null };
+    return this.http.post<Book>(this.BOOKS_API_URL, body);
   }
 }
