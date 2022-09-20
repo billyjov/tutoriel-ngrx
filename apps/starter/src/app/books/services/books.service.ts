@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Book } from 'src/app/models/books';
 
 @Injectable({
@@ -26,5 +26,12 @@ export class BooksService {
   public deleteBook(id: number): Observable<{}> {
     const url = `${this.BOOKS_API_URL}/${id}`;
     return this.http.delete<Book>(url);
+  }
+
+  public updateBook(book: Book): Observable<Book> {
+    const url = `${this.BOOKS_API_URL}/${book.id}`;
+    return this.http.put<Book>(url, book).pipe(
+      tap((val) => console.log('we got: ', val))
+    );
   }
 }

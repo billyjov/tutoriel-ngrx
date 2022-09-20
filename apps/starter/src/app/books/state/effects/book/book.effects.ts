@@ -43,6 +43,18 @@ export class BookEffects {
     )
   );
 
+  updateBook$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(BooksActions.BooksActionsGroup.updateBook),
+      mergeMap(({ book }) => this.booksService.updateBook(book).pipe(
+        map(() => BooksActions.BooksActionsGroup.updateBookSuccess({ book })),
+        catchError(error => of(BooksActions.BooksActionsGroup.updateBookFailure({ error: error })))
+      ))
+    )
+  );
+
+
+
 
   constructor(private actions$: Actions, private booksService: BooksService) { }
 

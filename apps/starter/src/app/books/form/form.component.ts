@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { Store } from '@ngrx/store';
 import { addBook } from '../state/actions/books/books.actions';
+import { BooksActionsGroup } from '../state/actions/books/books.actions';
 
 @Component({
   selector: 'app-form',
@@ -27,9 +28,13 @@ export class FormComponent implements OnInit {
 
   public onSubmit(): void {
     console.log('form: ', this.booksForm.value);
-
-    this.store.dispatch(addBook({ book: this.booksForm.value }))
-
+    if (this.booksForm.value.id !== '') {
+      this.store.dispatch(BooksActionsGroup.updateBook({
+        book: this.booksForm.value
+      }))
+    } else {
+      this.store.dispatch(addBook({ book: this.booksForm.value }))
+    }
   }
 
 }
