@@ -43,6 +43,16 @@ export const reducer = createReducer(
       ...state,
       books: state.books.filter((book: Book) => book.id !== id)
     }
+  }),
+  on(BooksActions.BooksActionsGroup.updateBookSuccess, (state, { book }) => {
+    const updatedBooks: Book[] = state.books.map((existingBook: Book) =>
+      existingBook.id === book.id ? book : existingBook
+    );
+
+    return {
+      ...state,
+      books: updatedBooks
+    }
   })
 
 );
