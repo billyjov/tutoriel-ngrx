@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
-import { Store } from '@ngrx/store';
+import { ofType } from '@ngrx/effects';
+import { Store, ActionsSubject } from '@ngrx/store';
+
 import { addBook } from '../state/actions/books/books.actions';
 import { BooksActionsGroup } from '../state/actions/books/books.actions';
 
@@ -15,7 +17,11 @@ export class FormComponent implements OnInit {
 
   public booksForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private store: Store) { }
+  constructor(
+    private fb: FormBuilder,
+    private store: Store,
+    private actionsSubject: ActionsSubject
+  ) { }
 
   ngOnInit(): void {
     this.booksForm = this.fb.group({
@@ -24,6 +30,12 @@ export class FormComponent implements OnInit {
       publisher: [''],
       author: ['']
     });
+
+    this.actionsSubject
+      .pipe(
+        ofType(BooksActionsGroup.updateBookSuccess)
+      )
+      .subscribe(() => this.booksForm.reset());
   }
 
   public onSubmit(): void {
