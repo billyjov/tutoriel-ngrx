@@ -1,3 +1,10 @@
+
+<ng-container *ngIf="error$ | async">
+  <div class="alert alert-danger">
+    <b>{{ error$ | async }}</b>
+  </div>
+</ng-container>
+
 <app-form #formRef></app-form>
 <hr>
 <app-list [bookForm]="formRef.booksForm"></app-list>

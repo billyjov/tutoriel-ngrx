@@ -1,5 +1,6 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import { Book } from 'src/app/models/books';
+import { ErrorType } from 'src/app/models/error';
 
 import * as BooksActions from '../../actions/books/books.actions';
 
@@ -8,6 +9,7 @@ export const booksFeatureKey = 'books';
 export interface BooksState {
   books: Book[];
   selectedBook: Book | null;
+  error: ErrorType;
 }
 
 export interface State {
@@ -16,7 +18,8 @@ export interface State {
 
 export const initialState: BooksState = {
   books: [],
-  selectedBook: null
+  selectedBook: null,
+  error: null,
 };
 
 export const reducer = createReducer(
@@ -38,10 +41,22 @@ export const reducer = createReducer(
       books: [...state.books, book]
     }
   }),
+  on(BooksActions.addBookFailure, (state, { error }) => {
+    return {
+      ...state,
+      error: error
+    }
+  }),
   on(BooksActions.BooksActionsGroup.deleteBookSuccess, (state, { id }) => {
     return {
       ...state,
       books: state.books.filter((book: Book) => book.id !== id)
+    }
+  }),
+  on(BooksActions.BooksActionsGroup.deleteBookFailure, (state, { error }) => {
+    return {
+      ...state,
+      error: error
     }
   }),
   on(BooksActions.BooksActionsGroup.updateBookSuccess, (state, { book }) => {
@@ -52,6 +67,12 @@ export const reducer = createReducer(
     return {
       ...state,
       books: updatedBooks
+    }
+  }),
+  on(BooksActions.BooksActionsGroup.updateBookFailure, (state, { error }) => {
+    return {
+      ...state,
+      error
     }
   })
 
