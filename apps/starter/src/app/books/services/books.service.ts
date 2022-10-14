@@ -30,8 +30,6 @@ export class BooksService {
 
   public updateBook(book: Book): Observable<Book> {
     const url = `${this.BOOKS_API_URL}/${book.id}`;
-    return this.http.put<Book>(url, book).pipe(
-      tap((val) => console.log('we got: ', val))
-    );
+    return this.http.put<Book>(url, book);
   }
 }

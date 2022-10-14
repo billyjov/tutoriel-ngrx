@@ -31,7 +31,6 @@ export class ListComponent implements OnInit {
   }
 
   public editBook(book: Book): void {
-    console.log(book);
     this.bookForm.patchValue({
       id: book.id,
       name: book.name,

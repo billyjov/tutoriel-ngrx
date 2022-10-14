@@ -48,7 +48,6 @@ export class FormComponent implements OnInit, OnDestroy {
   }
 
   public onSubmit(): void {
-    console.log('form: ', this.booksForm.value);
     const id = this.booksForm.value.id;
 
     if (this.isIdExist(id)) {
